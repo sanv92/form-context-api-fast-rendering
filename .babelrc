@@ -1,0 +1,53 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    ["babel-plugin-styled-components", {
+      "displayName": false,
+      "preprocess": false,
+      "minify": true
+    }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-proposal-object-rest-spread",
+    "transform-export-extensions",
+    "syntax-dynamic-import",
+    [
+      "babel-plugin-react-docgen",
+      {
+        "DOC_GEN_COLLECTION_NAME": "STORYBOOK_REACT_CLASSES",
+        "resolver": "findAllExportedComponentDefinitions"
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        ["@babel/preset-env", { "debug": false, "useBuiltIns": "entry" }],
+        ["@babel/preset-react", { "development": true }]
+      ],
+      "plugins": [
+        ["babel-plugin-styled-components", {
+          "displayName": true,
+          "preprocess": true,
+          "minify": false
+        }]
+      ]
+    },
+    "production": {
+      "presets": [
+        ["@babel/preset-env", { "debug": false, "useBuiltIns": "entry" }],
+        ["@babel/preset-react", { "development": false }]
+      ],
+      "plugins": [
+        ["babel-plugin-styled-components", {
+          "displayName": false,
+          "preprocess": false,
+          "minify": true
+        }]
+      ]
+    }
+  }
+}
